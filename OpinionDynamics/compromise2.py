@@ -7,12 +7,14 @@ import matplotlib.animation as animation
 
 rng = np.random.default_rng(0) # seed for reproducibility
 
-# Parameters
+# Parameters ========================================
+path_to_save = 'NetworkDynamics/OpinionDynamics/figures/compromise2.gif'
+
 m = 10 # Number of opinions
 n = 50 # size of grid
 p = 0.5 # Probability of interaction
 a = 0.1 # Strength of interaction (basically how much the opinion changes in a single interaction)
-b = 0.5 # Probability of antagonism (as opposed to compromise)
+b = 0.7 # Probability of antagonism (as opposed to compromise)
 # if b = 0, then the model is the same as the compromise model
 # if b < 0.5, then the grid converges to a steady state
 # if b > 0.5, then we get a maze-like structure where opinions get more and more extreme
@@ -20,6 +22,8 @@ b = 0.5 # Probability of antagonism (as opposed to compromise)
 # the scale of the interaction is determined by the normal distribution
 c = 0.5 # when c = 0.5, there is a 95% chance of the strength of the interaction being less than 1
 # an interaction strength of 1 means that the opinion changes to be exactly the same as the average of the neighbors
+
+# ====================================================
 
 opinions = np.arange(m) # Opinion labels
 
@@ -73,4 +77,8 @@ time_text = ax.text(0.02, -1.25, '', horizontalalignment='left', fontsize=12, co
 stats = ax.text(n/3, -1.25, '', horizontalalignment='left', fontsize=12, color='black')
 
 ani = animation.FuncAnimation(fig, update, frames=1000, interval=50)
-plt.show()
+
+# writer = animation.PillowWriter(fps=30)
+ani.save(path_to_save, fps=30)
+
+# plt.show()

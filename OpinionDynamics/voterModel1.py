@@ -4,10 +4,13 @@ import matplotlib.animation as animation
 
 rng = np.random.default_rng(0) # seed for reproducibility
 
-# Parameters
-m = 5 # Number of opinions
+# Parameters ========================================
+path_to_save = 'NetworkDynamics/OpinionDynamics/figures/voterModel1.gif'
+
+m = 10 # Number of opinions
 n = 100 # size of grid
 p = 0.1 # Probability of interaction
+# ====================================================
 
 opinions = np.arange(m) # Opinion labels
 
@@ -52,5 +55,7 @@ im = ax.imshow(grid, cmap='viridis')
 time_text = ax.text(0.02, -1.25, '', horizontalalignment='left', fontsize=12, color='black')
 
 ani = animation.FuncAnimation(fig, update, frames=1000, interval=16)
-plt.show()
+ani.save(path_to_save, fps=30)
+
+# plt.show()
 
